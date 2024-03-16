@@ -59,7 +59,7 @@ def draw_cube(piece, T,R):
     for i in range(n):
         position = get_position(piece, T[i],R[i])
         print(position)
-        ax.plot3D(position[:,0], position[:,1], position[:,2], color=colors[i])
+        ax.plot3D(position[:,0], position[:,1], position[:,2], color=colors[i], linewidth=5)
     plt.show()
 
 def draw_cube2(piece, T,R):
@@ -78,9 +78,10 @@ if __name__ == '__main__':
 
     piece3 = [[0,1,0],[0,0,0],[0,0,1]]
     piece4 = [[0,1,0],[0,0,0],[0,0,2]]
+    piece41 = [[0,1,1],[0,0,1],[0,0,0],[0,0,2]]
 
     T3, R3 = read_result('cube3x3.res')
     T4, R4 = read_result('cube4x4.res')
 
-    draw_cube2(piece3, T3, R3)
-    draw_cube2(piece4, T4, R4)
+    draw_cube(piece3, T3, R3)
+    draw_cube(piece4, T4, R4)

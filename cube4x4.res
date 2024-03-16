@@ -1,7 +1,10 @@
+# result for L-piece: (0,0,0) (0,0,1) (0,0,2) (0,1,0)
+
 Gurobi 10.0.1: optimal solution; objective 0
 61330 simplex iterations
 158 branching nodes
 empty_cubes = 0
+
 
 translation [*,*]
 :    1   2   3    :=

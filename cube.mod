@@ -6,7 +6,7 @@
 #                         -store  Rx, Ry, Rz and there powers
 #                         -precompute and store all possible rotations (via python)
 
-# here: store all possible rotations (via python): error running cplex: termination code 9 (aka insufficient memory)
+# here: store all possible rotations (via python)
 
 
 ## sets and parameters
@@ -83,10 +83,14 @@ subject to movement2{p in 1..nb_pieces, c in 1..size_piece, (x,y,z) in space}:
 #     sum{p in 1..nb_pieces, c in 1..size_piece } position[p,c,x,y,z] = 1;
 
 option cplex_options 'mipdisplay 2 mipinterval 1000';   # to display computation options
+option gurobi_options 'outlev 1' ;   # to display computation options
+#option gurobi_options 'logfile test.log';   # save the log in a file
 
 data test_cube/cube4x4.dat;
-option solver cplex;
+option solver gurobi;
 solve;
 display empty_cubes, translation;
+display empty_cubes, translation>res4x4auto.res;
 option omit_zero_rows 1;
 display rot;
+display rot>res4x4auto.res;
