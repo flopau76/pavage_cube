@@ -1,0 +1,15 @@
+option cplex_options 'mipdisplay 2 mipinterval 1000';   # to display computation options
+option gurobi_options 'outlev 1' ;   # to display computation options
+option gurobi_options 'logfile log_auto/4x4.log';   # save the log in a file
+
+#model cube.mod;
+model cube_fixed.mod;
+data dat/4x4.dat;
+
+option solver gurobi;
+solve;
+display empty_cubes, translation;
+display empty_cubes, translation>res_auto/4x4.res;
+option omit_zero_rows 1;
+display rot;
+display rot>res_auto/4x4.res;

@@ -51,7 +51,7 @@ subject to movement2{p in 1..nb_pieces, c in 1..size_piece, (x,y,z) in space}:
     dist[p,c,x,y,z] <= 100*(1-position[p,c,x,y,z]);
 
 
-data test_cube/cube_easy.dat;
+data miscellaneous/easy_model/easy.dat;
 option solver cplex;
 solve;
 display empty_cubes, translation;

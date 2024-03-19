@@ -1,14 +1,4 @@
-# Normal problem: translation and rotation
-
-# test one: rotation = matrix: need constraints to ensure it is a rotation matrix (# det(A)=1 and A* A.T = I); too many parameters
-# test two: rotation = (a,b,c) decomposition into Rx^a * Ry^b * Rz^c
-# several possibilities:  -store only Rx, Ry, Rz
-#                         -store  Rx, Ry, Rz and there powers
-#                         -precompute and store all possible rotations (via python)
-
-# here: store all possible rotations (via python)
-#__________________________________________________
-
+# Same as cube.mod but by arbitrarily fixing the first piece, reducing the possibility space
 
 ## sets and parameters
 # size of the problem
@@ -31,7 +21,7 @@ var rotation_matrix{1..nb_pieces, 1..3, 1..3};  # integer <=1 >=-1
 var dist{1..nb_pieces, 1..size_piece, space};
 var position{1..nb_pieces, 1..size_piece, space} binary;
 
-var dist2obj{space};    # computation var: infinity distance of the position of a point to 1
+var dist2obj{space};
 
 minimize empty_cubes: sum{(x,y,z) in space} dist2obj[x,y,z];
 
@@ -73,3 +63,9 @@ subject to movement1{p in 1..nb_pieces, c in 1..size_piece, (x,y,z) in space}:
 # dist > 0 -> position[p,x,y,z] = 0
 subject to movement2{p in 1..nb_pieces, c in 1..size_piece, (x,y,z) in space}:
     dist[p,c,x,y,z] <= 100*(1-position[p,c,x,y,z]);
+
+# fix first piece: might reduce possibility space
+subject to fix_translation{d in 1..3}:
+    translation[1,d] = 0;
+subject to fix_rotation:
+    rot[1,0,0,0] = 1;
