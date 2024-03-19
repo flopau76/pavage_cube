@@ -2,6 +2,7 @@ This is a mathematical optimisation project.
 It tries to solve the following problem: is it possible to create a cube with a certain amount of pieces of a specific form.
 
 To run an ampl simulation, execute any of the files in the folder `run`. 
+For the relative paths to work properly, this must be at the root of the project.
 New files will be created in the folder res_auto/ and log_auto/ but you first have to create this folder.
 
 You can visualise the results with draw.py
